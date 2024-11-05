@@ -6,7 +6,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 # Set the AWS service components used by this project.
-set(SERVICE_COMPONENTS s3)
+set(SERVICE_COMPONENTS s3 sts)
 
 # Set this project's name.
 project("demo_workload_identity_cpp")
@@ -41,3 +41,5 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
         ${AWSSDK_LINK_LIBRARIES})
 # snippet-end:[cpp.example_code.s3.hello_s3.cmake]
+
+install(TARGETS demo_workload_identity_cpp DESTINATION bin)
