@@ -32,34 +32,6 @@
       # config.allowUnfree = true;
     };
   in {
-    devShells.default = pkgs.mkShell rec {
-      # Update the name to something that suites your project.
-      name = "my-c++-project";
-
-      packages = with pkgs; [
-        # Development Tools
-        llvmPackages_14.clang
-        cmake
-        cmakeCurses
-
-        # Development time dependencies
-        gtest
-
-        # Build time and Run time dependencies
-        spdlog
-        abseil-cpp
-        aws-sdk-cpp
-      ];
-
-      # Setting up the environment variables you need during
-      # development.
-      shellHook = let
-        icon = "f121";
-      in ''
-        export PS1="$(echo -e '\u${icon}') {\[$(tput sgr0)\]\[\033[38;5;228m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]} (${name}) \\$ \[$(tput sgr0)\]"
-      '';
-    };
-
     packages.default = pkgs.callPackage ./default.nix {};
   });
 }
