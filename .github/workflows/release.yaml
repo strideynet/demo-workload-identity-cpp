@@ -1,0 +1,23 @@
+name: Publish package to GitHub Packages
+on:
+  release:
+    types: [created]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v17
+          with:
+            # Mostly to avoid GitHub rate limiting
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - run: nix build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: demo-workload-identity-cpp-amd64
+          path: result/bin/demo-workload-identity-cpp
