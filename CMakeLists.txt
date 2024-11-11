@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.13)
 
 # Set the AWS service components used by this project.
 set(SERVICE_COMPONENTS s3 sts)
-
+set(BUILD_SHARED_LIBS off)
 # Set this project's name.
 project("demo_workload_identity_cpp")
 
