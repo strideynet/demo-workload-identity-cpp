@@ -17,7 +17,8 @@ jobs:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - run: nix build
+      - run: ls -lah result/bin
       - uses: actions/upload-artifact@v4
         with:
           name: demo-workload-identity-cpp-amd64
-          path: result/bin/demo-workload-identity-cpp
+          path: result/bin/demo_workload_identity_cpp
